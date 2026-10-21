@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="22222222-2222-2222-2222-222222222222" name="current" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestDefinitions>
+    <UnitTest id="a" name="Loads"><TestMethod className="Sample.CheckoutTests" name="Loads" /></UnitTest>
+    <UnitTest id="b" name="Charges"><TestMethod className="Sample.CheckoutTests" name="Charges" /></UnitTest>
+    <UnitTest id="c" name="Refunds"><TestMethod className="Sample.CheckoutTests" name="Refunds" /></UnitTest>
+    <UnitTest id="e" name="Taxes"><TestMethod className="Sample.CheckoutTests" name="Taxes" /></UnitTest>
+  </TestDefinitions>
+  <Results>
+    <UnitTestResult testId="a" testName="Loads" outcome="Failed"><Output><ErrorInfo><Message>Page did not load</Message></ErrorInfo></Output></UnitTestResult>
+    <UnitTestResult testId="b" testName="Charges" outcome="Failed"><Output><ErrorInfo><Message>Expected total 42, received 40</Message></ErrorInfo></Output></UnitTestResult>
+    <UnitTestResult testId="c" testName="Refunds" outcome="Passed" />
+    <UnitTestResult testId="e" testName="Taxes" outcome="Skipped" />
+  </Results>
+</TestRun>
