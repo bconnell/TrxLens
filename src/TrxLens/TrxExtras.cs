@@ -6,7 +6,7 @@ using ModelContextProtocol.Server;
 namespace TrxLens;
 
 [McpServerResourceType]
-public static class TrxResources
+public sealed class TrxResources
 {
     [McpServerResource(UriTemplate = "trxlens://capabilities", Name = "TrxLens capabilities", MimeType = "application/json")]
     [Description("Documents the server's read-only scope, limits, tool names, and interpretation rules.")]
@@ -25,7 +25,7 @@ public static class TrxResources
 }
 
 [McpServerPromptType]
-public static class TrxPrompts
+public sealed class TrxPrompts
 {
     [McpServerPrompt(Name = "investigate_test_failures")]
     [Description("Provides a reproducible read-only workflow for explaining differences between two TRX runs.")]

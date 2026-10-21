@@ -5,7 +5,7 @@ using ModelContextProtocol.Server;
 namespace TrxLens;
 
 [McpServerToolType]
-public static class TrxTools
+public sealed class TrxTools
 {
     [McpServerTool(Name = "list_test_runs", ReadOnly = true, Destructive = false, Idempotent = true, OpenWorld = false)]
     [Description("Lists available top-level TRX filenames and file metadata in the configured results directory.")]
