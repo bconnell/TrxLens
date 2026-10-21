@@ -204,7 +204,6 @@ public sealed class TrxRepository
         FileInfo[] files = new DirectoryInfo(_directory)
             .EnumerateFiles("*", SearchOption.TopDirectoryOnly)
             .Where(file => string.Equals(file.Extension, ".trx", StringComparison.OrdinalIgnoreCase))
-            .OrderBy(file => file.Name, StringComparer.Ordinal)
             .Take(MaximumRuns + 1)
             .ToArray();
 
@@ -213,6 +212,9 @@ public sealed class TrxRepository
             throw new InvalidDataException("The results directory contains more than 100 TRX runs.");
         }
 
-        return files.Where(file => (file.Attributes & FileAttributes.ReparsePoint) == 0).ToArray();
+        return files
+            .Where(file => (file.Attributes & FileAttributes.ReparsePoint) == 0)
+            .OrderBy(file => file.Name, StringComparer.Ordinal)
+            .ToArray();
     }
 }
