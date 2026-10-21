@@ -62,6 +62,15 @@ public sealed class TrxRepositoryTests
         Assert.Throws<ArgumentException>(() => new TrxRepository(directory.Path).LoadRun(input));
     }
 
+    [Theory]
+    [InlineData("run\nother.trx")]
+    [InlineData("run\rother.trx")]
+    public void RejectsControlCharactersInRunNames(string input)
+    {
+        using TestDirectory directory = new();
+        Assert.Throws<ArgumentException>(() => TrxRepository.ValidateRunFilename(input));
+    }
+
     [Fact]
     public void MissingNamedRunIsRejected()
     {

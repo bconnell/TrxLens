@@ -176,7 +176,7 @@ public sealed class TrxRepository
                 : value[..MaximumEvidenceCharacters] + " [truncated]";
     }
 
-    private string GetSafeFilePath(string run)
+    public static void ValidateRunFilename(string run)
     {
         if (string.IsNullOrWhiteSpace(run)
             || run.Length > 240
@@ -184,10 +184,16 @@ public sealed class TrxRepository
             || !string.Equals(Path.GetFileName(run), run, StringComparison.Ordinal)
             || run.Contains('/')
             || run.Contains('\\')
+            || run.Any(char.IsControl)
             || !string.Equals(Path.GetExtension(run), ".trx", StringComparison.OrdinalIgnoreCase))
         {
             throw new ArgumentException("Provide a TRX filename from list_test_runs, not a path.", nameof(run));
         }
+    }
+
+    private string GetSafeFilePath(string run)
+    {
+        ValidateRunFilename(run);
 
         // An untrusted run name must match a file actually enumerated from this directory.
         FileInfo? listed = FindFiles().FirstOrDefault(file => string.Equals(file.Name, run, StringComparison.Ordinal));

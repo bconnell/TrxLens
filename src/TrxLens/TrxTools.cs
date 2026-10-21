@@ -10,7 +10,7 @@ public sealed class TrxTools
     [McpServerTool(Name = "list_test_runs", ReadOnly = true, Destructive = false, Idempotent = true, OpenWorld = false)]
     [Description("Lists available top-level TRX filenames and file metadata in the configured results directory.")]
     public static IReadOnlyList<RunFile> ListTestRuns(TrxRepository repository) =>
-        Guard(repository.ListRuns);
+        Guard(() => repository.ListRuns());
 
     [McpServerTool(Name = "summarize_test_run", ReadOnly = true, Destructive = false, Idempotent = true, OpenWorld = false)]
     [Description("Counts test outcomes from actual UnitTestResult entries, not potentially stale TRX counter attributes.")]
