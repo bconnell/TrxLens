@@ -1,6 +1,6 @@
 # Validation contract
 
-The repository is designed for local validation. GitHub Actions is not required.
+The repository is designed for local validation. A narrowly scoped pull-request-only Windows GitHub Actions job now executes the same bounded PowerShell verification on .NET 10, enabling exact-commit testing when the authoring environment lacks the SDK. No push-triggered CI, releases, cloud deployment or external service has been added.
 
 ## Gates
 
