@@ -25,4 +25,4 @@ Counts derive from `UnitTestResult` elements. `Passed` and `Failed` are recogniz
 
 ## Validation status
 
-Local .NET compilation and runtime gates have not been executed by the authoring environment. They are mandatory before merging or advertising a verified release.
+The authoring environment cannot run local .NET compilation and runtime gates. The new PR-only Windows workflow must finish successfully for the exact head before merging. Do not treat an in-progress, skipped, failed, or absent workflow as release evidence.
