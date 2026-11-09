@@ -1,0 +1,29 @@
+name: TrxLens PR verification
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trxlens-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  windows-release:
+    runs-on: windows-2025
+    timeout-minutes: 18
+    steps:
+      - name: Check out exact candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install .NET SDK 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - name: Execute repository's full bounded Windows verification
+        shell: powershell
+        run: powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify.ps1
