@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/TrxLens/TrxLens.csproj" />
+  <Project Path="tests/TrxLens.Tests/TrxLens.Tests.csproj" />
+  <Project Path="tests/TrxLens.Smoke/TrxLens.Smoke.csproj" />
+</Solution>
