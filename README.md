@@ -82,7 +82,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify.ps1
 
 It validates repository text and attribution, restores dependencies, builds with warnings as errors, verifies formatting, executes xUnit tests, and starts a real MCP stdio client for end-to-end checks. It stops immediately when a gate fails. The checks do not depend on GitHub Actions.
 
-The current authoring environment did not have a .NET SDK, so no successful build or test result is asserted here. See [validation contract](docs/VALIDATION.md) for the exact evidence required before claiming a verified release.
+The PR runs the identical Windows verification script on a .NET 10 GitHub Actions runner. Its result is the release evidence for that exact commit; the presence of the workflow alone is not a passing test. Local checks remain available and no .NET build was claimed in the authoring environment. See [validation contract](docs/VALIDATION.md) for the full gate.
 
 ## Security and limitations
 
