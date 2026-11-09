@@ -25,4 +25,4 @@ Counts derive from `UnitTestResult` elements. `Passed` and `Failed` are recogniz
 
 ## Validation status
 
-The authoring environment cannot run local .NET compilation and runtime gates. The new PR-only Windows workflow must finish successfully for the exact head before merging. Do not treat an in-progress, skipped, failed, or absent workflow as release evidence.
+The .NET compilation and runtime gates have not been executed locally in the authoring environment, which lacks .NET 10. The new PR-only Windows workflow must finish successfully for the exact head before merging. Do not treat an in-progress, skipped, failed, or absent workflow as release evidence.
