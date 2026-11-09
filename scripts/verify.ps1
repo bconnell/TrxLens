@@ -37,8 +37,9 @@ try {
     $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'
     Push-Location $root
     try {
+        # A PowerShell script signals failures by throwing. Under StrictMode
+        # $LASTEXITCODE is undefined until a native process has actually run.
         & (Join-Path $PSScriptRoot 'check-content.ps1')
-        if ($LASTEXITCODE -and $LASTEXITCODE -ne 0) { throw 'Content gate failed.' }
         Invoke-Dotnet -Arguments @('restore', 'TrxLens.slnx', '--disable-parallel')
         Invoke-Dotnet -Arguments @('build', 'TrxLens.slnx', '-c', 'Release', '--no-restore', '-m:1', '-warnaserror')
         Invoke-Dotnet -Arguments @('format', 'whitespace', 'TrxLens.slnx', '--verify-no-changes', '--no-restore')
